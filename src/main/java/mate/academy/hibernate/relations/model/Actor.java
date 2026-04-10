@@ -1,10 +1,12 @@
 package mate.academy.hibernate.relations.model;
 
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,9 +18,8 @@ public class Actor implements Cloneable {
     private Long id;
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movies;
+    @ManyToMany(mappedBy = "actors")
+    private Set<Movie> movies;
 
     @ManyToOne
     @JoinColumn(name = "country_id")
@@ -55,11 +56,11 @@ public class Actor implements Cloneable {
         this.country = country;
     }
 
-    public Movie getMovie() {
+    public Set<Movie> getMovie() {
         return movies;
     }
 
-    public void setMovie(Movie movie) {
+    public void setMovie(Set<Movie> movie) {
         this.movies = movie;
     }
 

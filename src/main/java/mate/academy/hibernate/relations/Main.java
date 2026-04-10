@@ -1,5 +1,7 @@
 package mate.academy.hibernate.relations;
 
+import java.util.HashSet;
+import java.util.List;
 import mate.academy.hibernate.relations.model.Actor;
 import mate.academy.hibernate.relations.model.Country;
 import mate.academy.hibernate.relations.model.Movie;
@@ -21,16 +23,16 @@ public class Main {
         CountryService countryService = new CountryServiceImpl(sessionFactory);
         countryService.add(usa);
 
+        Actor vinDiesel = new Actor("Vin Diesel");
+        vinDiesel.setCountry(usa);
+        ActorService actorService = new ActorServiceImpl(sessionFactory);
+        actorService.add(vinDiesel);
+
         Movie fastAndFurious = new Movie("Fast and Furious");
         MovieService movieService = new MovieServiceImpl(sessionFactory);
         movieService.add(fastAndFurious);
+        vinDiesel.setMovie(new HashSet<>(List.of(fastAndFurious)));
         System.out.println(movieService.get(fastAndFurious.getId()));
-
-        Actor vinDiesel = new Actor("Vin Diesel");
-        vinDiesel.setCountry(usa);
-        vinDiesel.setMovie(fastAndFurious);
-        ActorService actorService = new ActorServiceImpl(sessionFactory);
-        actorService.add(vinDiesel);
 
     }
 }

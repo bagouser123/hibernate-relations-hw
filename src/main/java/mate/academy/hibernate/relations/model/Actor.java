@@ -1,7 +1,5 @@
 package mate.academy.hibernate.relations.model;
 
-import mate.academy.hibernate.relations.exception.DataProcessingException;
-
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import mate.academy.hibernate.relations.exception.DataProcessingException;
 
 @Entity
 @Table(name = "actors")

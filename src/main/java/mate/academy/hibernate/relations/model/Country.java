@@ -1,12 +1,11 @@
 package mate.academy.hibernate.relations.model;
 
-import mate.academy.hibernate.relations.exception.DataProcessingException;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import mate.academy.hibernate.relations.exception.DataProcessingException;
 
 @Entity
 @Table(name = "countries")

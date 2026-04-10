@@ -1,5 +1,7 @@
 package mate.academy.hibernate.relations.model;
 
+import mate.academy.hibernate.relations.exception.DataProcessingException;
+
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -73,7 +75,7 @@ public class Actor implements Cloneable {
             }
             return actor;
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't make clone of " + this, e);
+            throw new DataProcessingException("Can't make clone of " + this, e);
         }
     }
 

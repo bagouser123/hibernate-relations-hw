@@ -4,6 +4,8 @@ import java.util.Optional;
 import mate.academy.hibernate.relations.dao.ActorDao;
 import mate.academy.hibernate.relations.exception.DataProcessingException;
 import mate.academy.hibernate.relations.model.Actor;
+import mate.academy.hibernate.relations.model.Country;
+import mate.academy.hibernate.relations.model.Movie;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,8 +39,12 @@ public class ActorDaoImpl extends AbstractDao implements ActorDao {
 
     @Override
     public Optional<Actor> get(Long id) {
-        try (Session session = factory.openSession()) {
-            return Optional.ofNullable(session.get(Actor.class, id));
+        Session session = null;
+        try {
+            session = factory.openSession();
+        } catch (RuntimeException e) {
+            throw new DataProcessingException("Can't get actor by id! " + id, e);
         }
+        return Optional.ofNullable(session.get(Actor.class, id));
     }
 }

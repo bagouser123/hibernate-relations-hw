@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import mate.academy.hibernate.relations.exception.DataProcessingException;
+import mate.academy.hibernate.relations.exception.EntityNotFoundException;
 
 @Entity
 @Table(name = "countries")
@@ -43,7 +43,7 @@ public class Country implements Cloneable {
         try {
             return (Country) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new DataProcessingException("Can't make clone of " + this, e);
+            throw new EntityNotFoundException("Can't make clone of " + this, e);
         }
     }
 

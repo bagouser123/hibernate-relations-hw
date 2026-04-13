@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import mate.academy.hibernate.relations.exception.DataProcessingException;
+import mate.academy.hibernate.relations.exception.EntityNotFoundException;
 
 @Entity
 @Table(name = "movies")
@@ -70,7 +70,7 @@ public class Movie implements Cloneable {
             }
             return movie;
         } catch (CloneNotSupportedException e) {
-            throw new DataProcessingException("Can't make clone of " + this, e);
+            throw new EntityNotFoundException("Can't make clone of " + this, e);
         }
     }
 
